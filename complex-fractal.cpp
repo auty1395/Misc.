@@ -71,9 +71,9 @@ int main()
 
 
 
-  for(double y = -15; y <= 15; y+=1) //31 rows, 0 to 30
+  for(double y = -15; y <= 15; y+=1) //31 rows, -15 to 15
   {
-      for(double x = -15; x <=15; x+=1) //31 collumns, 0 to 30
+      for(double x = -15; x <=15; x+=1) //31 collumns, -15 to 15
       {
           int j = fun1(ub, iterationlimit, x, y);
 
