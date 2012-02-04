@@ -1,18 +1,18 @@
 #include <iostream>
 #include <complex>
-#include <windows.h>
+//#include <windows.h>
 
 
 using namespace std;
 
 
-HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+//HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 
-char fun1(double bound, int itlimit, double a, double b, double ca, double cb)
+int fun1(double bound, int itlimit, double a, double b, double ca, double cb)
 {
 
- char count = 0;
+ int count = 0;
 
   complex<double> comp (a,b);
 
@@ -34,6 +34,30 @@ char fun1(double bound, int itlimit, double a, double b, double ca, double cb)
   return count;
 }
 
+int mandelbrot(double bound, int itlimit, double a, double b)
+{
+
+ int count = 0;
+  complex<double> z (0, 0);
+  complex<double> c (a,b);
+
+
+  while(count <= itlimit)
+  {
+
+      z = z * z;
+      z +=  c;
+
+
+      //comp = comp * (comp );
+      //comp *= 8;
+
+      if(z.real() >= bound) break;
+      count++;
+  }
+
+  return count;
+}
 
 
 
@@ -44,9 +68,9 @@ int main()
 
   //declair variables
   double ub = 0, ca = 0, cb = 0;
-  int count=0;
-  double a, b;
-  const int iterationlimit = 10000;
+
+
+  const int iterationlimit = 200;
   complex<double> comp;
   /*COORD maxwindowsize;
   maxwindowsize.X = 0;
@@ -89,8 +113,8 @@ int main()
   {
       for(double x = -5; x <=5; x+=.02) //31 collumns, -15 to 15
       {
-          char j = fun1(ub, iterationlimit, x, y,ca, cb);
-
+          char j = fun1(ub, iterationlimit, x, y,ca, cb) % 256;
+          //char j = mandelbrot()(ub, iterationlimit, x, y) % 256;
           j = (j%25) + 'A';
           cout << hex << j << ""; // hex makes the console show numbers in hexadecimal format instead of decimal
 
